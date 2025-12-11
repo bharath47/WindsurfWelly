@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claire Anderson Windsurfing | Wellington</title>
+    <meta name="description" content="Professional Windsurfing and Wingfoiling lessons in Porirua and Plimmerton, Wellington. Safe, fun instruction for all ages with Claire Anderson.">
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary: #006d77; /* Deep Ocean Teal */
+            --secondary: #83c5be; /* Soft Aqua */
+            --accent: #e29578; /* Warm Sand/Sunset */
+            --text-dark: #2d3436;
+            --text-light: #f1faee;
+            --white: #ffffff;
+            --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-main); line-height: 1.6; color: var(--text-dark); background-color: #fdfdfd; }
+        
+        /* --- UTILITIES --- */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover { background: #004d55; }
+        .section-title { text-align: center; margin-bottom: 40px; font-size: 2.5rem; color: var(--primary); }
+
+        /* --- HEADER --- */
+        header { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        nav { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
+        .nav-links { list-style: none; display: flex; gap: 20px; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 500; }
+        .nav-links a:hover { color: var(--primary); }
+        
+        /* --- HERO SECTION (FURTHER REDUCED HEIGHT) --- */
+        .hero {
+            /* Note: The image used below is the one from the previous safe search */
+            background: linear-gradient(rgba(0, 109, 119, 0.6), rgba(0, 109, 119, 0.6)), url('http://googleusercontent.com/image_collection/image_retrieval/11989923565263964925_0'); 
+            background-size: cover;
+            background-position: center;
+            /* REDUCED SPACE HERE: Changed from 60vh to 400px */
+            height: 400px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+        }
+        .hero-content h1 { font-size: 3rem; margin-bottom: 15px; line-height: 1.2; }
+        .hero-content p { font-size: 1.1rem; margin-bottom: 25px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        /* --- ABOUT & SERVICES --- */
+        .section { padding: 80px 0; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .about-text h3 { margin-bottom: 15px; color: var(--primary); }
+        
+        .about-image {
+            /* Ensures image fits nicely in the grid space */
+            border-radius: 10px; 
+            overflow: hidden; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .service-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid var(--secondary);
+        }
+        .service-card h3 { margin-bottom: 15px; }
+
+        /* --- LOCATIONS --- */
+        .location-section { background: var(--secondary); color: var(--text-dark); }
+        .location-details { text-align: center; max-width: 800px; margin: 0 auto; }
+        .location-highlight { font-weight: bold; font-size: 1.1rem; margin-top: 10px; }
+
+        /* --- CONTACT & FORM --- */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .contact-info ul { list-style: none; margin-top: 20px; }
+        .contact-info li { margin-bottom: 15px; font-size: 1.1rem; }
+        
+        .form-group { margin-bottom: 20px; position: relative; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 500; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+        }
+        .error-message {
+            color: #d63031;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none; /* Hidden by default */
+        }
+        .input-error { border-color: #d63031 !important; }
+
+        footer { background: var(--text-dark); color: var(--text-light); text-align: center; padding: 20px; margin-top: auto; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero { height: 300px; } /* Reduce hero height further on mobile */
+            .hero-content h1 { font-size: 2.2rem; }
+            .about-grid, .contact-container { grid-template-columns: 1fr; }
+            .nav-links { display: none; } 
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Claire Anderson Windsurfing</div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#lessons">Lessons</a></li>
+                    <li><a href="#locations">Locations</a></li>
+                    <li><a href="#contact" class="btn">Book Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Master the Wind in Wellington</h1>
+            <p>Professional windsurfing and wingfoiling lessons for all ages. Learn safely on the flat waters of Porirua Inlet.</p>
+            <a href="#contact" class="btn">Start Your Adventure</a>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2 class="section-title" style="text-align: left;">Meet Claire Anderson</h2>
+                    <p>With a passion for the ocean and years of teaching experience, Claire Anderson is one of Wellington's premier windsurfing instructors. An RYA-qualified instructor, Claire focuses on building confidence and skills in a safe environment.</p>
+                    <br>
+                    <h3>Why Choose Us?</h3>
+                    <ul>
+                        <li>✓ RYA Teaching Method (Royal Yachting Association)</li>
+                        <li>✓ Equipment provided (High-volume stable boards)</li>
+                        <li>✓ <strong>All ages welcome</strong> - from kids to seniors</li>
+                        <li>✓ Patient, friendly, and safety-focused</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <img src="http://googleusercontent.com/image_generation_content/0" alt="Claire Anderson windsurfing or wingfoiling in Wellington water">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lessons" class="section" style="background-color: #f9f9f9;">
+        <div class="container">
+            <h2 class="section-title">Our Lessons</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Beginner Windsurfing</h3>
+                    <p>Perfect for your first time on the water. We use stable boards and light sails to get you moving quickly.</p>
+                    <p><strong>Focus:</strong> Balance, steering, and turning.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Wing Foiling</h3>
+                    <p>The latest craze in water sports. Learn to handle the wing on a stable board before taking flight.</p>
+                    <p><strong>Focus:</strong> Wing handling and stability.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Kids & Youth</h3>
+                    <p>Specialized sessions for younger riders. We make learning safe and incredibly fun.</p>
+                    <p><strong>Focus:</strong> Confidence and fun!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="locations" class="section location-section">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--text-dark);">Where We Teach</h2>
+            <div class="location-details">
+                <p>We choose our location based on the best conditions for learning.</p>
+                <div style="margin-top: 30px;">
+                    <h3>🌊 Pauatahanui Inlet (Porirua Harbour)</h3>
+                    <p>Our primary location. The waist-deep, flat water is world-class for beginners. No big waves—just smooth sailing.</p>
+                </div>
+                <div style="margin-top: 30px;">
+                    <h3>🌊 Plimmerton Beach</h3>
+                    <p>Used for specific wind conditions and more advanced wave introductions. A beautiful spot with views of Mana Island.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Ready to ride?</h3>
+                    <p>Fill out the form to express your interest. We will call or email you to confirm availability based on the wind forecast.</p>
+                    <ul>
+                        <li><strong>Instructor:</strong> Claire Anderson</li>
+                        <li><strong>Phone:</strong> <a href="tel:+64275301999">027 530 1999</a></li>
+                        <li><strong>Email:</strong> (Contact via Form below)</li>
+                        <li><strong>Connect:</strong> <a href="https://www.facebook.com/WellingtonWindsurfSessions/" target="_blank">Wellington Windsurf Sessions | Facebook</a></li>
+                    </ul>
+                </div>
+                
+                <form id="lessonForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" novalidate>
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                        <div class="error-message" id="nameError">Please enter your name.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="error-message" id="emailError">Please enter a valid email address.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required pattern="[0-9\s\+\-]{7,15}">
+                        <div class="error-message" id="phoneError">Please enter a valid phone number.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interest">I am interested in:</label>
+                        <select id="interest" name="interest">
+                            <option value="beginner">Beginner Windsurfing</option>
+                            <option value="wingfoil">Wing Foiling</option>
+                            <option value="kids">Kids Lesson</option>
+                            <option value="other">Other / Inquiry</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message (Optional)</label>
+                        <textarea id="message" name="message" rows="4"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%;">Send Inquiry</button>
+                    <p style="font-size: 0.8rem; color: #777; margin-top: 10px; text-align: center;">We respect your privacy.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Claire Anderson Windsurfing Wellington. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // --- CLIENT SIDE VALIDATION SCRIPT ---
+        document.getElementById('lessonForm').addEventListener('submit', function(event) {
+            let isValid = true;
+
+            // 1. Validate Name
+            const nameInput = document.getElementById('name');
+            const nameError = document.getElementById('nameError');
+            if (nameInput.value.trim() === "") {
+                nameInput.classList.add('input-error');
+                nameError.style.display = 'block';
+                isValid = false;
+            } else {
+                nameInput.classList.remove('input-error');
+                nameError.style.display = 'none';
+            }
+
+            // 2. Validate Email (Simple Regex)
+            const emailInput = document.getElementById('email');
+            const emailError = document.getElementById('emailError');
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(emailInput.value)) {
+                emailInput.classList.add('input-error');
+                emailError.style.display = 'block';
+                isValid = false;
+            } else {
+                emailInput.classList.remove('input-error');
+                emailError.style.display = 'none';
+            }
+
+            // 3. Validate Phone
+            const phoneInput = document.getElementById('phone');
+            const phoneError = document.getElementById('phoneError');
+            // Regex allows numbers, spaces, plus signs, hyphens, and requires 7-15 characters
+            const phonePattern = /^[0-9\s\+\-]{7,15}$/; 
+            if (!phonePattern.test(phoneInput.value)) {
+                phoneInput.classList.add('input-error');
+                phoneError.style.display = 'block';
+                isValid = false;
+            } else {
+                phoneInput.classList.remove('input-error');
+                phoneError.style.display = 'none';
+            }
+
+            // Prevent submission if invalid
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+
+        // Clear errors on input
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', function() {
+                this.classList.remove('input-error');
+                // Find the next sibling that is an error message
+                let errorDisplay = this.nextElementSibling;
+                if(errorDisplay && errorDisplay.classList.contains('error-message')) {
+                    errorDisplay.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
